@@ -17,6 +17,7 @@
 
 <body>
     <div class="container">
+
         <!--Navbar with highscore link and timer-->
         <div class="navbarHeader">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -37,91 +38,30 @@
         <div class="startScreen text-center">
             <div class="row justify-content-center mt-5">
                 <div class="col-7">
-                    <h1 id = "h1">Coding Quiz Challenge</h1>
+                    <h1 id="h1">Coding Quiz Challenge</h1>
                     <br>
-                    <p id = "p">Try to answer the following code-related questions within the time limit. Each incorrect answer will result in deducted points and a time penalty of 10 seconds. Good luck!</p>
+                    <p id="p">Try to answer the following code-related questions within the time limit. Each incorrect
+                        answer will result in deducted points and a time penalty of 10 seconds. Good luck!</p>
                     <br>
-                    <button type="button" class="btn btn-primary" id="start-button">Start Quiz</button>
+                    <button type="button" class="btn btn-info" id="start-button">Start Quiz</button>
                 </div>
             </div>
         </div>
 
-
-        <!--add in the below 
-        
-         <div class="question"></div>
-        <ul class="choiceList"></ul>
-        <div class="quizMessage"></div>-->
-
-
+        <!--Divs for the dynamic questions, choices, and answer message-->
+        <div class="questionScreen text-center">
+            <!-- <div class="hide questionStyle" id="question"></div>
+            <div class="hide" id="choices">
+                <button type="button" class="btn btn-primary hide" id="button1"></button>
+                <button type="button" class="btn btn-primary hide" id="button2"></button>
+                <button type="button" class="btn btn-primary hide" id="button3"></button>
+                <button type="button" class="btn btn-primary hide" id="button4"></button>
+            </div>
+            <div class="hide" id="answerResult"></div> -->
+        </div>
 
 
     </div>
-
-    <script>
-        $(document).ready(function () {
-
-            // Start Quiz button click: clear initial screen?, start timer, and advance to question set 
-            
-
-            // Load main page text 
-
-
-            // interval function 
-            
-            var timeElement = document.querySelector(".time");
-            var secondsLeft = 40;
-            var startBtn = document.getElementById("start-button"); 
-
-            startBtn.addEventListener("click", setTime);
-
-            function setTime() {
-                var timerInterval = setInterval(
-
-                    function () {
-                        secondsLeft--;
-                        timeElement.textContent = "Time Left: " + secondsLeft;
-
-                        if (secondsLeft === 0) {
-                            clearInterval(timerInterval);
-                        }
-                    }
-                    , 1000);
-            };
-            
-
-            // Question and answer sets 
-
-            var questions = [
-                {
-                question: "first question", 
-                choices: ["first choice", "second choice", "third choice", "fourth choice"], 
-                correctAnswer: 1
-                }, 
-            ]
-             question: "1. How do you write 'Hello World' in an alert box?",
-    choices: ["msg('Hello World')", "msgBox('Hello World');", "alertBox('Hello World');", "alert('Hello World');"],
-    correctAnswer: 3
-}, {
-   ; 
-
-
-
-
-            // Display first question upon clicking start quiz button 
-
-            function startQuiz() {
-
-            };
-
-            startBtn.addEventListener("click", startQuiz());
-
-        });
-    </script>
-
-
-
-
 
 </body>
 
