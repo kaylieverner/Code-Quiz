@@ -55,8 +55,8 @@ document.addEventListener("DOMContentLoaded", function () {
         var button4 = document.createElement("button");
         var resultDiv = document.createElement("div");
         var result = document.createElement("h4");
-        var nextBtnDiv = document.createElement("div"); 
-        var nextBtn = document.createElement("button"); 
+        var nextBtnDiv = document.createElement("div");
+        var nextBtn = document.createElement("button");
 
         questionScreen.appendChild(questionDiv);
         questionDiv.appendChild(question);
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
         buttonDiv.appendChild(button4);
         questionScreen.appendChild(resultDiv);
         resultDiv.appendChild(result);
-        questionScreen.appendChild(nextBtnDiv); 
+        questionScreen.appendChild(nextBtnDiv);
         nextBtnDiv.appendChild(nextBtn);
 
         button1.classList.add("btn", "btn-info", "m-3", "btn1");
@@ -77,30 +77,49 @@ document.addEventListener("DOMContentLoaded", function () {
         nextBtn.classList.add("btn", "btn-secondary", "m-3", "btn1", "nextBtn", "hide");
         nextBtn.innerText = "Next Question";
 
-        
+
 
         // Question and answer sets
 
         var qaSet = [
             {
                 questionOption: "Which HTML tag do you put Javascript code into?",
-                choiceOptions: ["<script>", "<js>", "<javascript>", "<java>"],
-                correctAnswer: 1
+                choiceOptions: [
+                    { text: "<script>", correct: true },
+                    { text: "<js>", correct: false },
+                    { text: "<javascript>", correct: false },
+                    { text: "<java>", correct: false }
+                ]
             },
+
             {
                 questionOption: "What does CSS stand for?",
-                choiceOptions: ["cute style sheet", "concepts style sheet", "cascading style sheet", "coding style sheet"],
-                correctAnswer: 3
+                choiceOptions: [
+                    { text: "cute style sheet", correct: false },
+                    { text: "concepts style sheet", correct: false },
+                    { text: "cascading style sheet", correct: true },
+                    { text: "coding style sheet", correct: false }
+                ]
             },
+
             {
                 questionOption: "How do you define a variable?",
-                choiceOptions: ["variable =", "var =", "vari+=", "variable++"],
-                correctAnswer: 2
+                choiceOptions: [
+                    { text: "variable =", correct: false },
+                    { text: "var =", correct: true },
+                    { text: "vari+=", correct: false },
+                    { text: "variable++", correct: false }
+                ]
             },
+
             {
                 questionOption: "An ID selector is a name preceded by which symbol?",
-                choiceOptions: ["&", ".", "?", "#"],
-                correctAnswer: 4
+                choiceOptions: [
+                    { text: "$", correct: false },
+                    { text: "&", correct: false },
+                    { text: "%", correct: false },
+                    { text: "#", correct: true }
+                ]
             }
         ];
 
@@ -111,10 +130,10 @@ document.addEventListener("DOMContentLoaded", function () {
         var currentQuestion = 0;
 
         question.innerText = qaSet[currentQuestion].questionOption;
-        button1.innerText = qaSet[currentQuestion].choiceOptions[0];
-        button2.innerText = qaSet[currentQuestion].choiceOptions[1];
-        button3.innerText = qaSet[currentQuestion].choiceOptions[2];
-        button4.innerText = qaSet[currentQuestion].choiceOptions[3];
+        button1.innerText = qaSet[currentQuestion].choiceOptions[0].text;
+        button2.innerText = qaSet[currentQuestion].choiceOptions[1].text;
+        button3.innerText = qaSet[currentQuestion].choiceOptions[2].text;
+        button4.innerText = qaSet[currentQuestion].choiceOptions[3].text;
 
         //if right answer button is clicked, show correct message adn continue loop
         //else show incorrect message and continue in loop
@@ -123,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (true) {
             button1.addEventListener("click", function () {
-                result.innerHTML = "Correct";
+                result.innerHTML = qaSet[currentQuestion].choiceOptions[0].correct;
                 score++;
                 nextBtn.classList.remove("hide");
             });
@@ -131,23 +150,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (true) {
             button2.addEventListener("click", function () {
-                result.innerHTML = "Incorrect";
+                result.innerHTML = qaSet[currentQuestion].choiceOptions[1].correct;
                 nextBtn.classList.remove("hide");
-                
+
             });
         }
 
         if (true) {
             button3.addEventListener("click", function () {
-                result.innerHTML = "Incorrect";
+                result.innerHTML = qaSet[currentQuestion].choiceOptions[2].correct;;
                 nextBtn.classList.remove("hide");
- 
+
             });
         }
 
         if (true) {
             button4.addEventListener("click", function () {
-                result.innerHTML = "Incorrect";
+                result.innerHTML = qaSet[currentQuestion].choiceOptions[3].correct;
                 nextBtn.classList.remove("hide");
 
             });
@@ -155,170 +174,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (true) {
             nextBtn.addEventListener("click", function () {
-                console.log(currentQuestion);   
+                console.log(currentQuestion);
                 currentQuestion++;
                 console.log(currentQuestion);
-               
+
 
                 question.innerText = qaSet[currentQuestion].questionOption;
-                button1.innerText = qaSet[currentQuestion].choiceOptions[0];
-                button2.innerText = qaSet[currentQuestion].choiceOptions[1];
-                button3.innerText = qaSet[currentQuestion].choiceOptions[2];
-                button4.innerText = qaSet[currentQuestion].choiceOptions[3];
+                button1.innerText = qaSet[currentQuestion].choiceOptions[0].text;
+                button2.innerText = qaSet[currentQuestion].choiceOptions[1].text;
+                button3.innerText = qaSet[currentQuestion].choiceOptions[2].text;
+                button4.innerText = qaSet[currentQuestion].choiceOptions[3].text;
                 nextBtn.classList.add("hide");
-                question2; 
             });
         }
-
-        function question2(){
-
-        // QUESTION 2
-
-        if (true) {
-            button1.addEventListener("click", function () {
-                result.innerHTML = "Incorrect";
-                nextBtn.classList.remove("hide");
-
-            });
-        }
-
-        if (true) {
-            button2.addEventListener("click", function () {
-                result.innerHTML = "Incorrect";
-                nextBtn.classList.remove("hide");
-
-                
-            });
-        }
-
-        if (true) {
-            button3.addEventListener("click", function () {
-                result.innerHTML = "Correct";
-                score++;
-                nextBtn.classList.remove("hide");
-
-            });
-        }
-
-        if (true) {
-            button4.addEventListener("click", function () {
-                result.innerHTML = "Incorrect";
-                nextBtn.classList.remove("hide");
-
-            });
-        }
-
-        if (true) {
-            nextBtn.addEventListener("click", function () {
-                console.log(currentQuestion);   
-                currentQuestion++;
-                console.log(currentQuestion);
-               
-
-                question.innerText = qaSet[currentQuestion].questionOption;
-                button1.innerText = qaSet[currentQuestion].choiceOptions[0];
-                button2.innerText = qaSet[currentQuestion].choiceOptions[1];
-                button3.innerText = qaSet[currentQuestion].choiceOptions[2];
-                button4.innerText = qaSet[currentQuestion].choiceOptions[3];
-                nextBtn.classList.add("hide");
-                question3; 
-            });
-        }} function question3(){
-
-        // QUESTION 3
-
-        if (true) {
-            button1.addEventListener("click", function () {
-                result.innerHTML = "Incorrect";
-                nextBtn.classList.remove("hide");
-
-            });
-        }
-
-        if (true) {
-            button2.addEventListener("click", function () {
-                result.innerHTML = "Correct";
-                score++;
-                nextBtn.classList.remove("hide");
-
-                
-            });
-        }
-
-        if (true) {
-            button3.addEventListener("click", function () {
-                result.innerHTML = "Incorrect";
-                nextBtn.classList.remove("hide");
-
-            });
-        }
-
-        if (true) {
-            button4.addEventListener("click", function () {
-                result.innerHTML = "Incorrect";
-                nextBtn.classList.remove("hide");
-
-            });
-        }
-
-        if (true) {
-            nextBtn.addEventListener("click", function () {
-                console.log(currentQuestion);   
-                currentQuestion++;
-                console.log(currentQuestion);
-               
-
-                question.innerText = qaSet[currentQuestion].questionOption;
-                button1.innerText = qaSet[currentQuestion].choiceOptions[0];
-                button2.innerText = qaSet[currentQuestion].choiceOptions[1];
-                button3.innerText = qaSet[currentQuestion].choiceOptions[2];
-                button4.innerText = qaSet[currentQuestion].choiceOptions[3];
-                nextBtn.classList.add("hide");
-                question4;
-            });
-        }} function question4(){
-
-        // QUESTION 4 
-
-        if (true) {
-            button1.addEventListener("click", function () {
-                result.innerHTML = "Incorrect";
-                currentQuestion++;
-            });
-        }
-
-        if (true) {
-            button2.addEventListener("click", function () {
-                result.innerHTML = "Incorrect";
-                
-
-                
-            });
-        }
-
-        if (true) {
-            button3.addEventListener("click", function () {
-                result.innerHTML = "Incorrect";
-                
-
-            });
-        }
-
-        if (true) {
-            button4.addEventListener("click", function () {
-                result.innerHTML = "Correct";
-                score++;
-                
-
-            });
-        }}; 
 
         //Show score and prompt to add name to leader board ;
 
 
     };
 
-    // // Event listener on start button to begin displaying
+    // Event listener on start button to begin displaying
 
     startBtn.addEventListener("click", showQuestions);
 
