@@ -89,7 +89,8 @@ document.addEventListener("DOMContentLoaded", function () {
           questionScreen.appendChild(buttonDiv);
           buttonDiv.appendChild(choiceBtn);
 
-          choiceBtn.innerHTML = qaSet[i].choiceOptions[0];
+          console.log(qaSet[questionCounter].choiceOptions[i]);
+          choiceBtn.setAttribute("value", qaSet[questionCounter].choiceOptions[i]);
 
         // var objChoiceOptions = JSON.stringify(qaSet[i].choiceOptions);
         // console.log(objChoiceOptions);
