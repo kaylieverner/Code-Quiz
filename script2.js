@@ -67,13 +67,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var questionCounter = 0;
     var score = 0;
+     var questionScreen = document.querySelector(".questionScreen")
 
     startBtn.addEventListener("click", renderQuestion);
 
 
     function renderQuestion() {
 
-        var questionScreen = document.querySelector(".questionScreen")
+       
         var questionDiv = document.createElement("div");
         var question = document.createElement("h2");
         var buttonDiv = document.createElement("div");
@@ -94,43 +95,41 @@ document.addEventListener("DOMContentLoaded", function () {
             buttonDiv.appendChild(choiceBtn);
             choiceBtn.textContent = qaSet[questionCounter].choiceOptions[i];
 
-            choiceBtn.addEventListener("click", function () {
-                console.log("clicked");
-                console.log(this.textContent);
-                console.log(qaSet[questionCounter].answer)
+            choiceBtn.addEventListener("click", nextQuestion);
+        };
+    };
 
+    function nextQuestion() {
+        console.log("clicked");
+        console.log(this.textContent);
+        console.log(qaSet[questionCounter].answer)
 
-                var resultDiv = document.createElement("div");
-                var resultText = document.createElement("h4");
-                questionScreen.appendChild(resultDiv);
-                resultDiv.appendChild(resultText);
+        var resultDiv = document.createElement("div");
+        var resultText = document.createElement("h4");
+        questionScreen.appendChild(resultDiv);
+        resultDiv.appendChild(resultText);
 
-                if (this.textContent == qaSet[questionCounter].answer) {
-                    questionCounter++;
-                    score++;
-                    console.log(questionCounter);
-                    resultText.innerHTML = "Correct"
-                } else {
-                    questionCounter++
-                    resultText.innerHTML = "Incorrect"
-                }
-
-
-            }); choiceBtn.addEventListener("click", renderQuestion);
+        if (this.textContent == qaSet[questionCounter].answer) {
+            questionCounter++;
+            score++;
+            console.log(questionCounter);
+            resultText.innerHTML = "Correct"
+        } else {
+            questionCounter++
+            resultText.innerHTML = "Incorrect"
         }; 
+
+        // check if we've run out of questions    
+        if (questionCounter == 4) {
+            renderEnd; 
+        } else {
+            renderQuestion();
+        };
+    };
+
+    function renderEnd () {
+        alert("end"); 
     }; 
-
-    
-
-
-
-
-    // choiceBtn.addEventListener("click", function () {
-
-
-
-
-
 
     //Upon clicking an answer option: 
 
