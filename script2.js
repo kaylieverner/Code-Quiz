@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-//Upon clicking the "start quiz" button: 
+    //Upon clicking the "start quiz" button: 
 
     //Hide the H1, p, and start button 
 
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var qaSet = [
         {
             questionOption: "Which HTML tag do you put Javascript code into?",
-            choiceOptions: ["<script>", "<js>",  "<javascript>", "<java>"],
+            choiceOptions: ["script", "js", "javascript", "java"],
             answer: "<script>"
         },
         {
@@ -58,16 +58,19 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         {
             questionOption: "An ID selector is a name preceded by which symbol?",
-            choiceOptions: ["$", "&",  "*", "#"],
+            choiceOptions: ["$", "&", "*", "#"],
             answer: "#"
         }
     ];
 
+    // Displaying the questions and answer choices 
+
+    var questionCounter = 0;
+    var score = 0;
+
     startBtn.addEventListener("click", renderQuestion);
 
     function renderQuestion() {
-        var questionCounter = 0; 
-        var score = 0; 
 
         var questionScreen = document.querySelector(".questionScreen")
         var questionDiv = document.createElement("div");
@@ -78,50 +81,77 @@ document.addEventListener("DOMContentLoaded", function () {
 
         var q = qaSet[questionCounter].questionOption;
         questionDiv.appendChild(question);
-        question.innerHTML = q; 
+        question.textContent = q;
 
         // Loop to generate the choices
         for (var i = 0; i < 4; i++) {
 
-          // variable to create button
-          var choiceBtn = document.createElement("button");
-          choiceBtn.classList.add("btn", "btn-info", "m-3", "choiceBtn");
-          questionScreen.appendChild(buttonDiv);
-          buttonDiv.appendChild(choiceBtn);
+            // variable to create button
+            let choiceBtn = document.createElement("button");
+            choiceBtn.classList.add("btn", "btn-info", "m-3", "choiceBtn");
+            questionScreen.appendChild(buttonDiv);
+            buttonDiv.appendChild(choiceBtn);
 
-          console.log(qaSet[questionCounter].choiceOptions[i]);
-          choiceBtn.setAttribute("value", qaSet[questionCounter].choiceOptions[i]);
+            choiceBtn.textContent = qaSet[questionCounter].choiceOptions[i];
 
-        // var objChoiceOptions = JSON.stringify(qaSet[i].choiceOptions);
-        // console.log(objChoiceOptions);
+            choiceBtn.addEventListener("click", function(){
+
+            console.log(this.choiceOptions.textContent);
+            });
+            
+        };
+    };
+
+
+
+        // choiceBtn.addEventListener("click", function () {
+
+        //     var resultDiv = document.createElement("div");
+        //     var resultText = document.createElement("h4");
+        //     questionScreen.appendChild(resultDiv);
+        //     resultDiv.appendChild(resultText);
+
+        //     // determine which button was clicked 
+
+        //     function findContent(event) {
+        //         console.log(event.target.innerHTML);
+        //     }
+        //     // // attach event handler
+        //     choiceBtn.addEventListener('click', findContent)
+        //     var btnClicked = event.target.innerHTML;
+    
+        //     console.log(btnClicked);
+
+        //     if (btnClicked == this.answer) {
+        //         questionCounter++;
+        //         score++;
+        //         console.log(questionCounter);
+        //         resultText.innerHTML = "Correct"
+        //     } else {
+        //         questionCounter++
+        //         resultText.innerHTML = "Incorrect"
+        //     }
+
+        //     renderQuestion;
+        // });
 
         
 
+ 
 
-        //   choiceBtn.innerHTML = qaSet[i].choiceOptions[0]
-        //   choiceBtn.innerHTML = qaSet[i].choiceOptions[2]
-        //   choiceBtn.innerHTML = qaSet[i].choiceOptions[3]
-        //   choiceBtn.innerHTML = qaSet[i].choiceOptions[4]
 
-        //   choiceBtn.setAttribute("value", choiceOptions[i]);
 
-        //   choiceBtn.innerText = qaSet[0].choiceOptions[0];
-        //   choiceBtn.innerText = qaSet[0].choiceOptions[1];
-        //   choiceBtn.innerText = qaSet[0].choiceOptions[2];
-        //   choiceBtn.innerText = qaSet[0].choiceOptions[3];
 
-        //   choiceBtn.setAttribute("value", qaSet[i].choiceOptions[i]);
 
-        //click event when a user selects an option 
 
-          
-          }
-       }
 
-       
-       
 
-//Upon clicking an answer option: 
+
+
+
+
+
+    //Upon clicking an answer option: 
 
     //If correct answer is selected, display the message "correct" and increase score 
 
@@ -129,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Advance on to the next question and answer set 
 
-//Upon answering the last question: 
+    //Upon answering the last question: 
 
     //Display the score/result to the user 
 
