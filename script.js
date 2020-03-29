@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //Start the timer countdown
 
     var timeElement = document.querySelector(".time");
-    var secondsLeft = 45;
+    var secondsLeft = 15;
 
     startBtn.addEventListener("click", setTime);
 
@@ -31,9 +31,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (secondsLeft === 0) {
                     clearInterval(timerInterval);
                 }
+                // if (secondsLeft === 0 && renderEnd ) {
+                //     alert("Time's Up!");
+                //     timeOut();
+                // }
             }
             , 1000);
-    }; //TO DO// when timer hits 0, call renderEnd function 
+    };
+
+    function timeOut() {
+        renderEnd();
+    };
+
+    //TO DO// when timer hits 0, call renderEnd function 
 
     //If timer reaches 0 advance the user to the screen that displays the score/result and continue flow 
 
@@ -77,7 +87,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         var q = qaSet[questionCounter];
         question.textContent = q.questionOption;
-        buttonDiv.innerHTML ="";
+        buttonDiv.innerHTML = "";
+
 
         // Loop to generate the choices
         for (var i = 0; i < q.choiceOptions.length; i++) {
@@ -96,6 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Get next question 
 
     var resultText = document.querySelector(".result-h4");
+    var resultDiv = document.querySelector(".result-div");
 
     function nextQuestion() {
 
@@ -113,7 +125,6 @@ document.addEventListener("DOMContentLoaded", function () {
             questionCounter++
         };
 
-
         // check if we've run out of questions    
         if (questionCounter == 4) {
             renderEnd();
@@ -122,23 +133,19 @@ document.addEventListener("DOMContentLoaded", function () {
         };
     };
 
+    var endMessage = document.querySelector(".highscore-h1");
+    var scoreResult = document.querySelector(".highscore-h4");
+    var inputField = document.querySelector(".inputClass");
+    var inputBtn = document.querySelector(".inputBtnClass");
+
     function renderEnd() {
         questionScreen.innerHTML = "";
-        var endMessage = document.createElement("h1");
-        var scoreResult = document.createElement("h4");
-        var inputField = document.createElement("input");
-        var inputBtn = document.createElement("button");
 
-        questionScreen.appendChild(endMessage);
-        questionScreen.appendChild(scoreResult);
-        questionScreen.appendChild(inputField);
-        questionScreen.appendChild(inputBtn);
-
-        inputBtn.classList.add("btn", "btn-outline-secondary", "inputBtnClass");
-        inputBtn.textContent = "Submit Name";
+        inputBtn.classList.remove("hide");
+        inputField.classList.remove("hide");
 
         endMessage.textContent = "Quiz Completed!"
-        scoreResult.textContent = "You got " + score + " of 4 questions correct";
+        scoreResult.textContent = "You got " + score + " of " + qaSet.length + " questions correct";
 
         inputBtn.addEventListener("click", function (event) {
             event.preventDefault();
@@ -176,7 +183,6 @@ document.addEventListener("DOMContentLoaded", function () {
             highscoreName.textContent = playerScore.name;
             highscoreScore.textContent = playerScore.scoreLog;
 
-            startBtn.classList.remove("hide");
             startBtn.addEventListener("click", restartQuiz());
 
         });
@@ -193,10 +199,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //THINGS TO WORK ON 
 
-//when timer times out, quiz should end - add logic 
 //submitting input field for highscore blank - add logic 
 //restart quiz using button - add logic to reset 
-
-
 // for ending function - create elements directly within HTML
 //create separate HTML page for highscores (list with scores) 
