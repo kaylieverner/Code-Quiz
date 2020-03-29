@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
             inputBtn.classList.add("hide");
             inputField.classList.add("hide");
-            takeQuizAgainBtn.classList.remove("hide");
+            // takeQuizAgainBtn.classList.remove("hide");
 
             var playerScore = {
                 name: inputField.value.trim(),
