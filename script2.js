@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             questionOption: "Which HTML tag do you put Javascript code into?",
             choiceOptions: ["script", "js", "javascript", "java"],
-            answer: "<script>"
+            answer: "script"
         },
         {
             questionOption: "What does CSS stand for?",
