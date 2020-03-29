@@ -70,6 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     startBtn.addEventListener("click", renderQuestion);
 
+
     function renderQuestion() {
 
         var questionScreen = document.querySelector(".questionScreen")
@@ -115,9 +116,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-            });
-        }; renderQuestion;
-    };
+            }); choiceBtn.addEventListener("click", renderQuestion);
+        }; 
+    }; 
+
+    
+
 
 
 
