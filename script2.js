@@ -182,12 +182,24 @@ document.addEventListener("DOMContentLoaded", function () {
             highscoreName.textContent = playerScore.name;
             highscoreScore.textContent = playerScore.scoreLog;
 
-            var playAgainBtn = document.createElement("button");
-
+            startBtn.classList.remove("hide");
+            startBtn.addEventListener("click", restartQuiz());
 
         });
+
+        
     };
 
+    function restartQuiz () {
 
+
+    }; 
 
 });
+
+//THINGS TO WORK ON 
+
+//when timer times out, quiz should end - add logic 
+//submitting input field for highscore blank - add logic 
+//restart quiz using button - add logic to reset 
+//having all questions show on screen adn not being hidden as questions are advancing 
