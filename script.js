@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }
             , 1000);
-    };
+    }; //TO DO// when timer hits 0, call renderEnd function 
 
     //If timer reaches 0 advance the user to the screen that displays the score/result and continue flow 
 
@@ -67,47 +67,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var questionCounter = 0;
     var score = 0;
-    var questionScreen = document.querySelector(".questionScreen")
+    var questionScreen = document.querySelector(".questionScreen");
+    var question = document.querySelector(".question-h2");
+    var buttonDiv = document.querySelector(".button-div");
 
     startBtn.addEventListener("click", renderQuestion);
 
-
     function renderQuestion() {
 
-
-        var questionDiv = document.createElement("div");
-        var question = document.createElement("h2");
-        var buttonDiv = document.createElement("div");
-
-        questionScreen.appendChild(questionDiv);
-
-        var q = qaSet[questionCounter].questionOption;
-        questionDiv.appendChild(question);
-        question.textContent = q;
+        var q = qaSet[questionCounter];
+        question.textContent = q.questionOption;
+        buttonDiv.innerHTML ="";
 
         // Loop to generate the choices
-        for (var i = 0; i < 4; i++) {
+        for (var i = 0; i < q.choiceOptions.length; i++) {
 
             // variable to create button
             let choiceBtn = document.createElement("button");
             choiceBtn.classList.add("btn", "btn-info", "m-3", "choiceBtn");
-            questionScreen.appendChild(buttonDiv);
+            choiceBtn.setAttribute("value", q.choiceOptions[i]);
+            choiceBtn.textContent = q.choiceOptions[i];
             buttonDiv.appendChild(choiceBtn);
-            choiceBtn.textContent = qaSet[questionCounter].choiceOptions[i];
 
             choiceBtn.addEventListener("click", nextQuestion);
         };
     };
 
+    // Get next question 
+
+    var resultText = document.querySelector(".result-h4");
+
     function nextQuestion() {
+
         console.log("clicked");
         console.log(this.textContent);
         console.log(qaSet[questionCounter].answer)
-
-        var resultDiv = document.createElement("div");
-        var resultText = document.createElement("h4");
-        questionScreen.appendChild(resultDiv);
-        resultDiv.appendChild(resultText);
 
         if (this.textContent == qaSet[questionCounter].answer) {
             questionCounter++;
@@ -117,8 +111,8 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             resultText.innerHTML = "Incorrect"
             questionCounter++
-
         };
+
 
         // check if we've run out of questions    
         if (questionCounter == 4) {
@@ -187,13 +181,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         });
 
-        
+
     };
 
-    function restartQuiz () {
+    function restartQuiz() {
 
 
-    }; 
+    };
 
 });
 
@@ -202,4 +196,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //when timer times out, quiz should end - add logic 
 //submitting input field for highscore blank - add logic 
 //restart quiz using button - add logic to reset 
-//having all questions show on screen adn not being hidden as questions are advancing 
+
+
+// for ending function - create elements directly within HTML
+//create separate HTML page for highscores (list with scores) 

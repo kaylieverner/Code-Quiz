@@ -24,7 +24,7 @@
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">View Highscores<span class="sr-only">(current)</span></a>
+                            <a onclick="renderEnd()" class="nav-link" href="">View Highscores<span class="sr-only">(current)</span></a>
                         </li>
                     </ul>
                     <div class="navbar-texttext-dark time">
@@ -50,15 +50,28 @@
 
         <!--Divs for the dynamic questions, choices, and answer message-->
         <div class="questionScreen text-center">
+            <div class="question-div">
+                <h2 class="question-h2"></h2>
+            </div>
+            <div class="button-div">
 
-            <div class="input-group mb-3">
-                <input type="text" class="form-control hide inputClass" placeholder="Player's Name" aria-label="Player's Name" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary hide inputBtnClass" type="button">Submit</button>
-                </div>
-              </div>
+            </div>
+            <div class="result-div">
+                <h4 class="result-h4"></h4>
+
+            </div>
+
+
+            
 
         </div>
+
+        <div class="input-group mb-3">
+            <input type="text" class="form-control hide inputClass" placeholder="Player's Name" aria-label="Player's Name" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary hide inputBtnClass" type="button">Submit</button>
+            </div>
+          </div>
 
 
     </div>
