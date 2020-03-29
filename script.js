@@ -31,21 +31,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (secondsLeft === 0) {
                     clearInterval(timerInterval);
                 }
-                // if (secondsLeft === 0 && renderEnd ) {
+                // if (secondsLeft === 0) {
                 //     alert("Time's Up!");
                 //     timeOut();
                 // }
             }
             , 1000);
     };
-
-    function timeOut() {
-        renderEnd();
-    };
-
-    //TO DO// when timer hits 0, call renderEnd function 
-
-    //If timer reaches 0 advance the user to the screen that displays the score/result and continue flow 
 
     //Begin displaying the questions 
 
@@ -89,7 +81,6 @@ document.addEventListener("DOMContentLoaded", function () {
         question.textContent = q.questionOption;
         buttonDiv.innerHTML = "";
 
-
         // Loop to generate the choices
         for (var i = 0; i < q.choiceOptions.length; i++) {
 
@@ -126,29 +117,56 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         // check if we've run out of questions    
-        if (questionCounter == 4) {
+        if (questionCounter == qaSet.length) {
             renderEnd();
         } else {
             renderQuestion();
         };
     };
 
+    var messageAndResultDiv = document.querySelector(".messageAndResultDiv")
     var endMessage = document.querySelector(".highscore-h1");
     var scoreResult = document.querySelector(".highscore-h4");
     var inputField = document.querySelector(".inputClass");
     var inputBtn = document.querySelector(".inputBtnClass");
 
+    // show the user their final score
     function renderEnd() {
         questionScreen.innerHTML = "";
-
-        inputBtn.classList.remove("hide");
-        inputField.classList.remove("hide");
-
         endMessage.textContent = "Quiz Completed!"
         scoreResult.textContent = "You got " + score + " of " + qaSet.length + " questions correct";
+        inputBtn.classList.remove("hide");
+        inputField.classList.remove("hide");
+    };
 
-        inputBtn.addEventListener("click", function (event) {
+    inputBtn.addEventListener("click", checkInputField);
+
+    var highscoreName = document.querySelector(".highscoreName");
+    var highscoreScore = document.querySelector(".highscoreScore");
+    var takeQuizAgainBtn = document.getElementById("retakeBtn");
+    var highscoresTitle = document.querySelector(".highscores-title");
+
+    // make sure the user did not leave the field blank when logging their highscore
+    function checkInputField () {
+        var inputText = inputField.value;
+        if (inputText == "") {
+            alert("Enter a name or initials")
+            checkInputField; 
+        } else {collectScores(event)};
+    };
+   
+    // save running log of highscores 
+    function collectScores(event) {
+
             event.preventDefault();
+
+            console.log("clicked");
+            messageAndResultDiv.innerHTML = "";
+            highscoresTitle.textContent = "Highscores";
+    
+            inputBtn.classList.add("hide");
+            inputField.classList.add("hide");
+            takeQuizAgainBtn.classList.remove("hide");
 
             var playerScore = {
                 name: inputField.value.trim(),
@@ -156,50 +174,34 @@ document.addEventListener("DOMContentLoaded", function () {
             };
 
             console.log(playerScore);
-
-            localStorage.setItem("playerScore", JSON.stringify("playerScore"));
-
-            var highscoreDiv = document.createElement("div");
-            var highscoreDivName = document.createElement("div");
-            var highscoreDivScore = document.createElement("div");
-            var highscoreName = document.createElement("p");
-            var highscoreScore = document.createElement("p");
-
-            questionScreen.appendChild(highscoreDiv);
-            highscoreDiv.appendChild(highscoreDivName);
-            highscoreDiv.appendChild(highscoreDivScore);
-            highscoreDivName.appendChild(highscoreName);
-            highscoreDivScore.appendChild(highscoreScore);
-
-            highscoreDiv.classList.add("row");
-            highscoreDivName.classList.add("col-6");
-            highscoreDivScore.classList.add("col-6");
-
-            endMessage.textContent = "Highscores";
-            scoreResult.textContent = "";
-            inputBtn.classList.add("hide");
-            inputField.classList.add("hide");
+            localStorage.setItem("playerScore", JSON.stringify(playerScore)); 
 
             highscoreName.textContent = playerScore.name;
             highscoreScore.textContent = playerScore.scoreLog;
 
-            startBtn.addEventListener("click", restartQuiz());
+            //get recent submission 
+            var recentUser = JSON.parse(localStorage.getItem("playerScore"));
 
-        });
+            var HSNamediv = document.querySelector(".highscorenamediv");
+            var HSScorediv = document.querySelector(".highscorescorediv");
+            var recentUserName = document.createElement("p");
+            var recentUserScore = document.createElement("p");
+            HSNamediv.appendChild(recentUserName);
+            HSScorediv.appendChild(recentUserScore);
 
+            // recentUserName.textContent = recentUser.name; 
+            // recentUserScore.textContent = recentUser.score; 
 
-    };
+            // takeQuizAgainBtn.addEventListener("click", setTime);
+            // takeQuizAgainBtn.addEventListener("click", renderQuestion);
+        };
 
-    function restartQuiz() {
+   
 
+    
 
-    };
-
-});
+    });
 
 //THINGS TO WORK ON 
-
-//submitting input field for highscore blank - add logic 
 //restart quiz using button - add logic to reset 
-// for ending function - create elements directly within HTML
-//create separate HTML page for highscores (list with scores) 
+//when timer hits zero 0 - call renderend function; if reach end before timer hits 0, clearInterval(var); [var is only local at the moment, have to make global first];

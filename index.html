@@ -24,7 +24,7 @@
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a onclick="renderEnd()" class="nav-link" href="">View Highscores<span
+                            <a onclick="renderEnd()" class="nav-link" href=""><span
                                     class="sr-only">(current)</span></a>
                         </li>
                     </ul>
@@ -62,7 +62,7 @@
         </div>
 
         <!--Divs for ending page: title, input field and button-->
-        <div class="highscoreDiv">
+        <div class=messageAndResultDiv>
             <h1 class="highscore-h1"></h1>
             <h4 class="highscore-h4"></h4>
             <div class="input-group mb-3">
@@ -73,6 +73,25 @@
                 </div>
             </div>
         </div>
+
+
+        <h1 class="highscores-title"></h1>
+        <div class=highscoreDiv>
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-3 highscorenamediv">
+                    <p class="highscoreName"></p>
+                </div>
+                <div class="col-3 highscorescorediv">
+                    <p class="highscoreScore"></p>
+                </div>
+                <div class="col-3"></div>
+            </div>
+        </div>
+        <div class="viewScoresBtnDiv">
+            <button type="button" class="btn btn-info hide" id="retakeBtn">Take Quiz Again</button>
+        </div>
+
 
     </div>
 
