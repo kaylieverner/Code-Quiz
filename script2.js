@@ -98,6 +98,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log(this.textContent);
                 console.log(qaSet[questionCounter].answer)
 
+
+                var resultDiv = document.createElement("div");
+                var resultText = document.createElement("h4");
+                questionScreen.appendChild(resultDiv);
+                resultDiv.appendChild(resultText);
+
                 if (this.textContent == qaSet[questionCounter].answer) {
                     questionCounter++;
                     score++;
@@ -117,10 +123,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // choiceBtn.addEventListener("click", function () {
 
-    //     var resultDiv = document.createElement("div");
-    //     var resultText = document.createElement("h4");
-    //     questionScreen.appendChild(resultDiv);
-    //     resultDiv.appendChild(resultText);
 
 
 
