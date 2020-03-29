@@ -91,61 +91,36 @@ document.addEventListener("DOMContentLoaded", function () {
             choiceBtn.classList.add("btn", "btn-info", "m-3", "choiceBtn");
             questionScreen.appendChild(buttonDiv);
             buttonDiv.appendChild(choiceBtn);
-
             choiceBtn.textContent = qaSet[questionCounter].choiceOptions[i];
 
-            choiceBtn.addEventListener("click", function(){
+            choiceBtn.addEventListener("click", function () {
+                console.log("clicked");
+                console.log(this.textContent);
+                console.log(qaSet[questionCounter].answer)
 
-            console.log(this.choiceOptions.textContent);
+                if (this.textContent == qaSet[questionCounter].answer) {
+                    questionCounter++;
+                    score++;
+                    console.log(questionCounter);
+                    resultText.innerHTML = "Correct"
+                } else {
+                    questionCounter++
+                    resultText.innerHTML = "Incorrect"
+                }
+
+
             });
-            
-        };
+        }; renderQuestion;
     };
 
 
 
-        // choiceBtn.addEventListener("click", function () {
+    // choiceBtn.addEventListener("click", function () {
 
-        //     var resultDiv = document.createElement("div");
-        //     var resultText = document.createElement("h4");
-        //     questionScreen.appendChild(resultDiv);
-        //     resultDiv.appendChild(resultText);
-
-        //     // determine which button was clicked 
-
-        //     function findContent(event) {
-        //         console.log(event.target.innerHTML);
-        //     }
-        //     // // attach event handler
-        //     choiceBtn.addEventListener('click', findContent)
-        //     var btnClicked = event.target.innerHTML;
-    
-        //     console.log(btnClicked);
-
-        //     if (btnClicked == this.answer) {
-        //         questionCounter++;
-        //         score++;
-        //         console.log(questionCounter);
-        //         resultText.innerHTML = "Correct"
-        //     } else {
-        //         questionCounter++
-        //         resultText.innerHTML = "Incorrect"
-        //     }
-
-        //     renderQuestion;
-        // });
-
-        
-
- 
-
-
-
-
-
-
-
-
+    //     var resultDiv = document.createElement("div");
+    //     var resultText = document.createElement("h4");
+    //     questionScreen.appendChild(resultDiv);
+    //     resultDiv.appendChild(resultText);
 
 
 
